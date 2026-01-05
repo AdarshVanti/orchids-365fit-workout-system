@@ -86,6 +86,53 @@ export interface DailyHabits {
   water: boolean;
 }
 
+export interface Vitals {
+  heartRate: number;
+  restingHR: number;
+  hrv: number;
+  respiratoryRate: number;
+  bloodOxygen: number;
+  skinTemp: number;
+  bloodPressure?: {
+    systolic: number;
+    diastolic: number;
+  };
+}
+
+export interface SleepData {
+  score: number;
+  performance: number;
+  debt: number;
+  consistency: number;
+  stages: {
+    light: number;
+    deep: number;
+    rem: number;
+    awake: number;
+  };
+  duration: number;
+  efficiency: number;
+}
+
+export interface LongevityMetrics {
+  physiologicalAge: number;
+  paceOfAging: number;
+  vo2Max: number;
+  biomarkers: {
+    glucose?: number;
+    cholesterol?: number;
+    hba1c?: number;
+    hscrp?: number;
+  };
+}
+
+export interface JournalEntry {
+  id: string;
+  category: string;
+  value: string | number | boolean;
+  timestamp: string;
+}
+
 export interface DailyProgress {
   day: number;
   planDay: string;
@@ -93,9 +140,16 @@ export interface DailyProgress {
   completedAt?: string;
   exercises: ExerciseProgress[];
   habits: DailyHabits;
-  todos?: TodoItem[]; // Track daily routine items status
+  todos?: TodoItem[];
   duration: number;
   notes?: string;
+  recovery?: number;
+  sleep?: SleepData;
+  strain?: number;
+  stress?: number;
+  vitals?: Vitals;
+  longevity?: LongevityMetrics;
+  journal?: JournalEntry[];
 }
 
 export interface WarmupExercise {
