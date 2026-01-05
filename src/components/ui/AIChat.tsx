@@ -54,12 +54,16 @@ export function AIChat({ context }: AIChatProps) {
     setInput("");
     setIsLoading(true);
 
-    try {
-      const userData = getUserData();
-      const systemPrompt = `You are 365Fit AI, a professional fitness and health assistant. 
-        User Data: ${JSON.stringify(userData?.profile || {})}
-        Current Context: ${context || "General fitness query"}
-        Always be encouraging, factually correct, and concise. Use internal knowledge for exercises and nutrition.`;
+      try {
+        const userData = getUserData();
+        const progress = getDailyProgressAll();
+        const systemPrompt = `You are 365Fit AI, a professional fitness and health assistant. 
+          User Data: ${JSON.stringify(userData || {})}
+          Daily Progress History: ${JSON.stringify(progress)}
+          Current Context: ${context || "General fitness query"}
+          Always be encouraging, factually correct, and concise. 
+          Use your knowledge to analyze the user's progress, nutrition, and routine. 
+          If asked for an opinion or analysis, use the provided data.`;
 
       let assistantResponse = "";
 

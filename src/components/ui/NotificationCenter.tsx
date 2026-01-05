@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Bell, X, CheckCircle2, AlertCircle } from "lucide-react";
 import { getTodos, getUserData } from "@/lib/storage";
 

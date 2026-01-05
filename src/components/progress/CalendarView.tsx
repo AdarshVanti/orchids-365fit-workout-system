@@ -194,17 +194,28 @@ export function CalendarView({ onBack }: CalendarViewProps) {
                       )}
                     </div>
 
-                    <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
-                      <span className="text-sm text-zinc-400 font-medium block mb-2">HABITS & TASKS</span>
-                      <div className="grid grid-cols-2 gap-2">
-                        {Object.entries(progressData[selectedDate].habits).map(([key, val]) => (
-                          <div key={key} className="flex items-center gap-2 text-xs">
-                            <div className={`w-2 h-2 rounded-full ${val ? "bg-emerald-500" : "bg-zinc-700"}`} />
-                            <span className={val ? "text-zinc-200" : "text-zinc-500 capitalize"}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                      <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                        <span className="text-sm text-zinc-400 font-medium block mb-2">HABITS & TASKS</span>
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          {Object.entries(progressData[selectedDate].habits).map(([key, val]) => (
+                            <div key={key} className="flex items-center gap-2 text-xs">
+                              <div className={`w-2 h-2 rounded-full ${val ? "bg-emerald-500" : "bg-zinc-700"}`} />
+                              <span className={val ? "text-zinc-200" : "text-zinc-500 capitalize"}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                            </div>
+                          ))}
+                        </div>
+                        {progressData[selectedDate].todos && progressData[selectedDate].todos!.length > 0 && (
+                          <div className="border-t border-zinc-800 pt-3 space-y-2">
+                            <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Routine Items</span>
+                            {progressData[selectedDate].todos!.map((todo, idx) => (
+                              <div key={idx} className="flex items-center gap-2 text-xs">
+                                <Check className={`w-3 h-3 ${todo.completed ? "text-emerald-500" : "text-zinc-700"}`} />
+                                <span className={todo.completed ? "text-zinc-300 line-through" : "text-zinc-500"}>{todo.text}</span>
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        )}
                       </div>
-                    </div>
                   </div>
                 ) : (
                   <div className="p-8 text-center rounded-xl border border-dashed border-zinc-800">

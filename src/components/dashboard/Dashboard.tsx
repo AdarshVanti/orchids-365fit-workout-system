@@ -84,12 +84,14 @@ export function Dashboard({ onStartWorkout, onViewProgress, onViewCalendar, onVi
     setHabits(newHabits);
     const today = new Date().toISOString().split("T")[0];
     const existing = getDailyProgress(today);
+    const todos = getTodos();
     saveDailyProgress(today, {
       day: userData?.selectedPlan.currentDay || 1,
       planDay: todayWorkout?.split || "",
       completed: existing?.completed || false,
       exercises: existing?.exercises || [],
       habits: newHabits,
+      todos: todos,
       duration: existing?.duration || 0,
     });
   };

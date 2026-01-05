@@ -93,6 +93,7 @@ export interface DailyProgress {
   completedAt?: string;
   exercises: ExerciseProgress[];
   habits: DailyHabits;
+  todos?: TodoItem[]; // Track daily routine items status
   duration: number;
   notes?: string;
 }
